@@ -377,7 +377,9 @@ const props = defineProps({
 })
 const emit = defineEmits(["validateForm", "update:modelValue"])
 const router = useRouter()
+
 const __ = inject("$translate")
+
 let activeTab = ref(props.tabs?.[0].name)
 let fileAttachments = ref([])
 let statusColor = ref("")

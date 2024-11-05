@@ -65,6 +65,7 @@ import { createResource } from "frappe-ui"
 
 const dayjs = inject("$dayjs")
 const employee = inject("$employee")
+const __ = inject("$translate")
 const firstOfMonth = ref(dayjs().date(1).startOf("D"))
 
 const colorMap = {

@@ -127,7 +127,7 @@
 
 <script setup>
 import { FeatherIcon, createResource } from "frappe-ui"
-import { computed, ref, watch } from "vue"
+import { computed, ref, watch, inject } from "vue"
 
 import FormField from "@/components/FormField.vue"
 import EmptyState from "@/components/EmptyState.vue"
@@ -154,6 +154,7 @@ const emit = defineEmits([
 	"update-expense-tax",
 	"delete-expense-tax",
 ])
+const __ = inject("$translate")
 const expenseTax = ref({})
 const editingIdx = ref(null)
 

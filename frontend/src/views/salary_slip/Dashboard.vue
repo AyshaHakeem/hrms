@@ -47,7 +47,7 @@
 							</router-link>
 						</div>
 					</div>
-					<EmptyState :message="__('No salary slips found')" v-else />
+					<EmptyState message="No salary slips found" v-else />
 				</div>
 			</div>
 		</template>

@@ -10,8 +10,11 @@
 </template>
 
 <script setup>
+import { inject } from "vue"
 import { IonPage } from "@ionic/vue"
 import ListView from "@/components/ListView.vue"
+
+const __ = inject("$translate")
 
 const SHIFT_ASSIGNMENT_FIELDS = ["name", "shift_type", "start_date", "end_date", "docstatus"]
 const FILTER_CONFIG = [

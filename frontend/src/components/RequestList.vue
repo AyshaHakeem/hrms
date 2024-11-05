@@ -28,7 +28,7 @@
 			</Button>
 		</router-link>
 	</div>
-	<EmptyState :message="emptyStateMessage || __('You have no requests')" v-else />
+	<EmptyState :message="emptyStateMessage || 'You have no requests'" v-else />
 
 	<ion-modal
 		ref="modal"

@@ -8,10 +8,12 @@
 				</div>
 				<div class="text-xs font-normal text-gray-500">
 					<span>
-						{{ __("{0}: {1}", null, [
+						{{
+							__("{0}: {1}", [
 								__("Gross Pay"),
 								formatCurrency(doc.gross_pay, doc.currency),
-							]) }}
+							])
+						}}
 					</span>
 					<span class="whitespace-pre"> &middot; </span>
 				</div>
@@ -49,9 +51,9 @@ const title = computed(() => {
 		return dayjs(props.doc.start_date).format("MMM YYYY")
 	} else {
 		// quarterly, bimonthly, etc
-		return `${dayjs(props.doc.start_date).format("MMM YYYY")} - ${dayjs(props.doc.end_date).format(
-			"MMM YYYY"
-		)}`
+		return `${dayjs(props.doc.start_date).format("MMM YYYY")} - ${dayjs(
+			props.doc.end_date
+		).format("MMM YYYY")}`
 	}
 })
 </script>

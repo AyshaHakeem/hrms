@@ -41,7 +41,7 @@ import { computed, inject } from "vue"
 
 import ListItem from "@/components/ListItem.vue"
 import EmployeeAdvanceIcon from "@/components/icons/EmployeeAdvanceIcon.vue"
-import { formatCurrency } from "@/utils/formatters";
+import { formatCurrency } from "@/utils/formatters"
 
 const dayjs = inject("$dayjs")
 const props = defineProps({

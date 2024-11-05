@@ -90,7 +90,7 @@
 					</div>
 				</div>
 				<EmptyState
-					:message="__('No {0} found', [__(props.doctype)])"
+					:message="`No ${props.doctype?.toLowerCase()}s found`"
 					v-else-if="!documents.loading"
 				/>
 

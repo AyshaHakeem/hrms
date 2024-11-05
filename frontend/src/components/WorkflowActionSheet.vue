@@ -45,8 +45,9 @@
 
 <script setup>
 import { IonActionSheet, modalController } from "@ionic/vue"
-import { computed, ref, onMounted } from "vue"
+import { computed, ref, onMounted, inject } from "vue"
 import { FeatherIcon } from "frappe-ui"
+
 const props = defineProps({
 	doc: {
 		type: Object,
@@ -67,6 +68,8 @@ const emit = defineEmits(["workflow-applied"])
 
 let showActionSheet = ref(false)
 let actions = ref([])
+
+const __ = inject("$translate")
 
 const getTransitions = async () => {
 	const transitions = await props.workflow.getTransitions(props.doc)

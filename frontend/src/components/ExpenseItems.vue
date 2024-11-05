@@ -18,10 +18,12 @@
 							</div>
 							<div class="text-xs font-normal text-gray-500">
 								<span>
-									{{ __("{0}: {1}", null, [
-										__("Sanctioned"),
-										formatCurrency(item.sanctioned_amount || 0, currency),
-									]) }}
+									{{
+										__("{0}: {1}", [
+											__("Sanctioned"),
+											formatCurrency(item.sanctioned_amount || 0, currency),
+										])
+									}}
 								</span>
 								<span class="whitespace-pre"> &middot; </span>
 								<span class="whitespace-nowrap" v-if="item.expense_date">
@@ -43,7 +45,7 @@
 import { computed, inject } from "vue"
 
 import { getCompanyCurrency } from "@/data/currencies"
-import { formatCurrency } from "@/utils/formatters";
+import { formatCurrency } from "@/utils/formatters"
 
 const props = defineProps({
 	doc: {

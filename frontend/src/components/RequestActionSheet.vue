@@ -276,18 +276,21 @@ const approvalField = computed(() => {
 })
 
 const getSuccessMessage = ({ status = "", docstatus = 0 }) => {
-	if (status) return __([status], __('{0} successfully!'))
-	else if (docstatus)
-		return __('Document {0}', [
+	if (status) {
+		return __("{0} successfully!", [__(status)])
+	} else if (docstatus) {
+		return __("Document {0} successfully!", [
 			docstatus === 1 ? __("submitted") : __("cancelled")]
-			, __('successfully!'))
+		)
+	}
 }
 
 const getFailureMessage = ({ status = "", docstatus = 0 }) => {
-	if (status)
-		return __([status === __("Approved") ? __("Approval") : __("Rejection")], '{0}failed!')
-	else if (docstatus)
+	if (status) {
+		return __("{0} failed!", [status === __("Approved") ? __("Approval") : __("Rejection")])
+	} else if (docstatus) {
 		return __('Document {0} failed!', [docstatus === 1 ? __("submission") : __("cancellation")])
+	}
 }
 
 const updateDocumentStatus = ({ status = "", docstatus = 0 }) => {
