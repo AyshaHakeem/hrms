@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
 "POT-Creation-Date: 2024-11-03 09:34+0000\n"
-"PO-Revision-Date: 2024-11-03 17:48\n"
+"PO-Revision-Date: 2024-11-05 17:52\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -2142,7 +2142,7 @@ msgstr ""
 #: hrms/hr/doctype/leave_control_panel/leave_control_panel.json
 #: hrms/hr/doctype/leave_type/leave_type.json
 msgid "Carry Forward"
-msgstr "Nakletmek"
+msgstr ""
 
 #. Label of the carry_forwarded_leaves_count (Float) field in DocType 'Leave
 #. Allocation'
@@ -8635,11 +8635,11 @@ msgstr ""
 
 #: frontend/src/views/leave/List.vue:17
 msgid "My Leaves"
-msgstr ""
+msgstr "İzinlerim"
 
 #: frontend/src/components/RequestPanel.vue:36
 msgid "My Requests"
-msgstr ""
+msgstr "Taleplerim"
 
 #. Label of the salary_component (Data) field in DocType 'Salary Component'
 #: hrms/hr/doctype/leave_control_panel/leave_control_panel.js:137
@@ -10341,7 +10341,7 @@ msgstr "Değerlendirme Kriteri"
 #: hrms/hr/doctype/appraisal/appraisal.json
 #: hrms/hr/doctype/interview/interview.json
 msgid "Ratings"
-msgstr ""
+msgstr "Değerlendirme"
 
 #. Label of the reallocate_leaves (Check) field in DocType 'Employee Transfer'
 #: hrms/hr/doctype/employee_transfer/employee_transfer.json
@@ -10499,7 +10499,7 @@ msgstr ""
 #. 'Employee Referral'
 #: hrms/hr/doctype/employee_referral/employee_referral.json
 msgid "Referral Details"
-msgstr ""
+msgstr "Referans Detayları"
 
 #. Label of the referrer (Link) field in DocType 'Employee Referral'
 #: hrms/hr/doctype/employee_referral/employee_referral.json
@@ -10521,7 +10521,7 @@ msgstr "Referansın Adı"
 #. 'Appraisal'
 #: hrms/hr/doctype/appraisal/appraisal.json
 msgid "Reflections"
-msgstr ""
+msgstr "Yansımalar"
 
 #. Label of the refuelling_details (Section Break) field in DocType 'Vehicle
 #. Log'
@@ -13712,7 +13712,7 @@ msgstr ""
 #: frontend/src/components/FormView.vue:119
 #: frontend/src/components/FormView.vue:158
 msgid "Uploading..."
-msgstr ""
+msgstr "Yükleniyor..."
 
 #. Label of the upper_range (Currency) field in DocType 'Job Applicant'
 #. Label of the upper_range (Currency) field in DocType 'Job Opening'
@@ -14276,7 +14276,7 @@ msgstr "{0} & {1}"
 
 #: frontend/src/components/ExpenseClaimItem.vue:86
 msgid "{0} & {1} more"
-msgstr ""
+msgstr "{0} ve {1} daha fazlası"
 
 #: hrms/payroll/doctype/salary_slip/salary_slip.py:2185
 msgid "{0} <br> This error can be due to missing or deleted field."
@@ -14333,12 +14333,12 @@ msgstr "{0} başarıyla oluşturuldu!"
 
 #: frontend/src/components/FormView.vue:571
 msgid "{0} deleted successfully!"
-msgstr ""
+msgstr "{0} başarıyla silindi!"
 
 #: frontend/src/components/CheckInPanel.vue:184
 #: frontend/src/components/RequestActionSheet.vue:290
 msgid "{0} failed!"
-msgstr ""
+msgstr "{0} başarısız oldu!"
 
 #: hrms/payroll/doctype/additional_salary/additional_salary.py:157
 msgid "{0} has {1} enabled"
@@ -14383,15 +14383,15 @@ msgstr "{0} / {1} Tamamlandı"
 
 #: frontend/src/components/CheckInPanel.vue:175
 msgid "{0} successful!"
-msgstr ""
+msgstr "{0} başarılı!"
 
 #: frontend/src/components/RequestActionSheet.vue:280
 msgid "{0} successfully!"
-msgstr ""
+msgstr "{0} başarılı!"
 
 #: frontend/src/components/FormView.vue:549
 msgid "{0} updated successfully!"
-msgstr ""
+msgstr "{0} başarıyla güncellendi!"
 
 #: hrms/hr/doctype/staffing_plan/staffing_plan.py:129
 msgid "{0} vacancies and {1} budget for {2} already planned for subsidiary companies of {3}. You can only plan for upto {4} vacancies and and budget {5} as per staffing plan {6} for parent company {3}."
