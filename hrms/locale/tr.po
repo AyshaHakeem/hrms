@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: frappe\n"
 "Report-Msgid-Bugs-To: contact@frappe.io\n"
-"POT-Creation-Date: 2024-11-03 09:34+0000\n"
-"PO-Revision-Date: 2024-11-05 17:52\n"
+"POT-Creation-Date: 2024-11-10 09:33+0000\n"
+"PO-Revision-Date: 2024-11-13 19:12\n"
 "Last-Translator: contact@frappe.io\n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
@@ -421,7 +421,7 @@ msgstr "Ana Hesap"
 msgid "Account No"
 msgstr "Hesap No"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:101
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:102
 msgid "Account type cannot be set for payroll payable account {0}, please remove and try again"
 msgstr "Bordro ödenecek {0} hesabı için hesap türü ayarlanamıyor, lütfen kaldırın ve tekrar deneyin"
 
@@ -522,7 +522,7 @@ msgstr "Muhasebe Ayarları"
 msgid "Accounts not set for Salary Component {0}"
 msgstr "Maaş Bileşeni için ayarlanmamış hesaplar {0}"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:592
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:593
 msgid "Accrual Journal Entry for salaries from {0} to {1}"
 msgstr "{0} - {1} tarihleri arasında maaşlar için Günlük Tahakkuk  Girişi"
 
@@ -766,7 +766,7 @@ msgstr "Gelişmiş Filtreler"
 #: hrms/hr/doctype/expense_claim/expense_claim.json
 #: hrms/hr/workspace/expense_claims/expense_claims.json
 msgid "Advances"
-msgstr "Peşinatlar"
+msgstr "Avanslar"
 
 #. Name of a role
 #: hrms/hr/doctype/expense_claim/expense_claim.json
@@ -1400,7 +1400,7 @@ msgstr "Onaylayan"
 
 #: hrms/setup.py:133 hrms/setup.py:235
 msgid "Approvers"
-msgstr ""
+msgstr "Onaylayanlar"
 
 #: hrms/hr/report/monthly_attendance_sheet/monthly_attendance_sheet.js:15
 #: hrms/public/js/salary_slip_deductions_report_filters.js:22
@@ -1980,7 +1980,7 @@ msgstr "Bonus Ödeme Tarihi bir tarih olamaz"
 msgid "Branch"
 msgstr "Görev Bölümü"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:192
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:193
 msgid "Branch: {0}"
 msgstr ""
 
@@ -2053,7 +2053,7 @@ msgstr "Kampanya"
 msgid "Cancel"
 msgstr "İptal"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:128
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:129
 msgid "Cancellation Queued"
 msgstr "İptal Sırada Bekliyor"
 
@@ -2084,11 +2084,11 @@ msgstr "İptal Sırada Bekliyor"
 msgid "Cancelled"
 msgstr "İptal Edildi"
 
-#: hrms/api/roster.py:111
+#: hrms/api/roster.py:116
 msgid "Cannot break shift after end date"
 msgstr "Bitiş tarihinden sonra vardiyaya ara verilemez"
 
-#: hrms/api/roster.py:113
+#: hrms/api/roster.py:118
 msgid "Cannot break shift before start date"
 msgstr "Vardiya başlangıç tarihinden önce bölünemez"
 
@@ -2124,7 +2124,7 @@ msgstr "Etkin İzin Dönemi bulunamadı"
 msgid "Cannot mark attendance for an Inactive employee {0}"
 msgstr ""
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:61
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:62
 msgid "Cannot submit. Attendance is not marked for some employees."
 msgstr ""
 
@@ -2182,17 +2182,17 @@ msgstr "Maliyet Merkezleri Grafiği"
 msgid "Check <a href='/app/List/Error Log?reference_doctype={0}'>{1}</a> for more details"
 msgstr "Daha fazla ayrıntı için <a href='/app/List/Error Log?reference_doctype={0}'>{1}</a> adresini kontrol edin"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1401
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1421
 msgid "Check Error Log {0} for more details."
 msgstr "Daha fazla ayrıntı için Hata Günlüğü {0} adresini kontrol edin."
 
 #: frontend/src/components/CheckInPanel.vue:124
 msgid "Check In"
-msgstr ""
+msgstr "Giriş"
 
 #: frontend/src/components/CheckInPanel.vue:123
 msgid "Check Out"
-msgstr ""
+msgstr "Çıkış"
 
 #. Label of the check_vacancies (Check) field in DocType 'HR Settings'
 #: hrms/hr/doctype/hr_settings/hr_settings.json
@@ -2206,7 +2206,7 @@ msgstr "Daha fazla ayrıntı için {0} adresini kontrol edin"
 
 #: frontend/src/components/CheckInPanel.vue:160
 msgid "Check-in"
-msgstr ""
+msgstr "Giriş"
 
 #. Label of the check_in_date (Date) field in DocType 'Travel Itinerary'
 #: hrms/hr/doctype/travel_itinerary/travel_itinerary.json
@@ -2215,7 +2215,7 @@ msgstr "Giriş Tarihi"
 
 #: frontend/src/components/CheckInPanel.vue:160
 msgid "Check-out"
-msgstr ""
+msgstr "Çıkış"
 
 #. Label of the check_out_date (Date) field in DocType 'Travel Itinerary'
 #: hrms/hr/doctype/travel_itinerary/travel_itinerary.json
@@ -2615,7 +2615,7 @@ msgstr "Onayla"
 
 #: frontend/src/components/CheckInPanel.vue:73
 msgid "Confirm {0}"
-msgstr ""
+msgstr "Onayla {0}"
 
 #. Label of the connections_tab (Tab Break) field in DocType 'Job Requisition'
 #. Label of the connections_tab (Tab Break) field in DocType 'Payroll Entry'
@@ -2731,7 +2731,7 @@ msgstr "Maliyet Detayları"
 msgid "Could not find any salary slip(s) for the employee {0}"
 msgstr ""
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1464
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1484
 msgid "Could not submit some Salary Slips: {}"
 msgstr "Bazı Maaş Bordroları gönderilemedi: {}"
 
@@ -2862,7 +2862,7 @@ msgstr ""
 msgid "Creating Payment Entries......"
 msgstr "Ödeme Girişleri Oluşturuluyor..."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1424
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1444
 msgid "Creating Salary Slips..."
 msgstr "Maaş Fişleri Oluşturuluyor..."
 
@@ -3328,11 +3328,11 @@ msgstr "Sil"
 
 #: frontend/src/components/FileUploaderView.vue:49
 msgid "Delete Attachment"
-msgstr ""
+msgstr "Eki Sil"
 
 #: frontend/src/components/FormView.vue:219
 msgid "Delete {0}"
-msgstr ""
+msgstr "Sil {0}"
 
 #. Label of the delivery_trip (Link) field in DocType 'Expense Claim'
 #: hrms/hr/doctype/expense_claim/expense_claim.json
@@ -3476,7 +3476,7 @@ msgstr "Bölüm Onaycısı"
 msgid "Department Wise Openings"
 msgstr "Departman Bazında Açık Pozisyonlar"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:194
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:195
 msgid "Department: {0}"
 msgstr "Departman: {0}"
 
@@ -3640,7 +3640,7 @@ msgstr "Görev Tanımı"
 msgid "Designation Skill"
 msgstr "Atama Becerisi"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:196
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:197
 msgid "Designation: {0}"
 msgstr "Görev Tanımı: {0}"
 
@@ -3709,7 +3709,7 @@ msgstr "Kapalı"
 
 #: frontend/src/views/AppSettings.vue:40
 msgid "Disabling Push Notifications..."
-msgstr ""
+msgstr "Anlık Bildirimleri Devre Dışı Bırakılıyor..."
 
 #: frontend/src/components/WorkflowActionSheet.vue:111
 msgid "Dismiss"
@@ -3747,7 +3747,7 @@ msgstr "Belge Durumu"
 
 #: frontend/src/components/RequestActionSheet.vue:292
 msgid "Document {0} failed!"
-msgstr ""
+msgstr "Belge {0} başarısız oldu!"
 
 #. Option for the 'Travel Type' (Select) field in DocType 'Travel Request'
 #: hrms/hr/doctype/travel_request/travel_request.json
@@ -3794,7 +3794,7 @@ msgid "Duplicate Attendance"
 msgstr ""
 
 #: hrms/hr/doctype/appraisal/appraisal.py:65
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:95
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:96
 msgid "Duplicate Entry"
 msgstr "Yinelenen Giriş"
 
@@ -4904,7 +4904,7 @@ msgstr ""
 
 #: frontend/src/views/AppSettings.vue:25
 msgid "Enable Push Notifications"
-msgstr ""
+msgstr "Anlık Bildirimleri Etkinleştir"
 
 #. Label of the enabled (Check) field in DocType 'Daily Work Summary Group'
 #. Label of the enabled (Check) field in DocType 'Shift Assignment Schedule'
@@ -4916,7 +4916,7 @@ msgstr "Etkin"
 
 #: frontend/src/views/AppSettings.vue:40
 msgid "Enabling Push Notifications..."
-msgstr ""
+msgstr "Anlık Bildirimler Etkinleştiriliyor..."
 
 #. Label of the encashment (Section Break) field in DocType 'Leave Type'
 #: hrms/hr/doctype/leave_type/leave_type.json
@@ -4995,7 +4995,7 @@ msgstr "Bitiş Tarihi, Başlangıç Tarihi'nden önce olamaz"
 msgid "End Time"
 msgstr "Bitiş Zamanı"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:200
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:201
 msgid "End date: {0}"
 msgstr "Bitiş tarihi: {0}"
 
@@ -5553,7 +5553,7 @@ msgstr "İş Başvurusu Durumu güncellenemedi"
 msgid "Failed to {0} {1} for employees:"
 msgstr "Personeller için {0} {1} başarısız oldu:"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1467
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1487
 #: hrms/public/js/utils/index.js:149
 msgid "Failure"
 msgstr "Başarısız"
@@ -5750,7 +5750,7 @@ msgstr "Adı "
 msgid "Fiscal Year"
 msgstr "Mali Yıl"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1384
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1404
 msgid "Fiscal Year {0} not found"
 msgstr "bulunamadı Mali Yılı {0}"
 
@@ -6571,7 +6571,7 @@ msgstr "Merhaba {}! Bu e-posta size yaklaşan tatilleri hatırlatmak içindir g�
 
 #: frontend/src/components/CheckInPanel.vue:4
 msgid "Hey, {0} 👋"
-msgstr ""
+msgstr "Merhaba, {0}"
 
 #: hrms/hr/dashboard_chart_source/hiring_vs_attrition_count/hiring_vs_attrition_count.py:44
 msgid "Hiring Count"
@@ -6757,7 +6757,7 @@ msgstr ""
 #. Component'
 #: hrms/payroll/doctype/salary_component/salary_component.json
 msgid "If enabled, the value specified or calculated in this component will not contribute to the earnings or deductions. However, it's value can be referenced by other components that can be added or deducted. "
-msgstr ""
+msgstr "Etkinleştirilirse, bu bileşende belirtilen veya hesaplanan değer kazançlara veya kesintilere katkıda bulunmayacaktır. Ancak, değeri eklenebilen veya düşülebilen diğer bileşenler tarafından referans alınabilir. "
 
 #. Description of the 'Include holidays in Total no. of Working Days' (Check)
 #. field in DocType 'Payroll Settings'
@@ -6828,7 +6828,7 @@ msgstr "İşlemde"
 msgid "In Time"
 msgstr "Zamanında"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:122
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:123
 msgid "In case of any error during this background process, the system will add a comment about the error on this Payroll Entry and revert to the Submitted status"
 msgstr "Bu arka plan işlemi sırasında herhangi bir hata olması durumunda, sistem bu Bordro Girişine hata hakkında bir yorum ekleyecek ve Gönderildi durumuna geri dönecektir."
 
@@ -6969,7 +6969,7 @@ msgstr "Gelir Vergisi Levhası: {0} devre dışı bırakıldı"
 #. Slip'
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
 msgid "Income from Other Sources"
-msgstr ""
+msgstr "Diğer Kaynaklardan Elde Edilen Gelir"
 
 #: hrms/hr/doctype/appraisal/appraisal.py:159 hrms/mixins/appraisal.py:20
 msgid "Incorrect Weightage Allocation"
@@ -8159,7 +8159,7 @@ msgstr "Konaklama Gerekli"
 
 #: frontend/src/views/Profile.vue:107
 msgid "Log Out"
-msgstr ""
+msgstr "Çıkış Yap"
 
 #. Label of the log_type (Select) field in DocType 'Employee Checkin'
 #: frontend/src/views/attendance/EmployeeCheckinList.vue:22
@@ -8177,7 +8177,7 @@ msgstr "Giriş"
 
 #: frontend/src/views/InvalidEmployee.vue:7
 msgid "Login Failed"
-msgstr ""
+msgstr "Giriş Başarısız"
 
 #: frontend/src/views/Login.vue:8
 msgid "Login to Frappe HR"
@@ -8467,7 +8467,7 @@ msgstr "Menü"
 #. Label of the message (Text Editor) field in DocType 'PWA Notification'
 #: hrms/hr/doctype/daily_work_summary_group/daily_work_summary_group.json
 #: hrms/hr/doctype/pwa_notification/pwa_notification.json
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1434
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1454
 msgid "Message"
 msgstr "Mesaj"
 
@@ -8627,7 +8627,7 @@ msgstr "Hesabım"
 
 #: frontend/src/views/employee_advance/List.vue:17
 msgid "My Advances"
-msgstr ""
+msgstr "Avanslarım"
 
 #: frontend/src/views/expense_claim/List.vue:18
 msgid "My Claims"
@@ -8720,11 +8720,11 @@ msgstr "Yeni Personel ID"
 
 #: frontend/src/components/ExpensesTable.vue:213
 msgid "New Expense Item"
-msgstr ""
+msgstr "Yeni Gider Kalemi"
 
 #: frontend/src/components/ExpenseTaxesTable.vue:221
 msgid "New Expense Tax"
-msgstr ""
+msgstr "Yeni Gider Vergisi"
 
 #: hrms/public/js/templates/performance_feedback.html:26
 msgid "New Feedback"
@@ -8852,11 +8852,11 @@ msgstr "Giriş Çıkış kaydı bulunamadı."
 msgid "No changes found in timings."
 msgstr "Zamanlamalarda herhangi bir değişiklik bulunamadı."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:201
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:202
 msgid "No employees found"
 msgstr "Personel bulunamadı"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:184
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:185
 msgid "No employees found for the mentioned criteria:<br>Company: {0}<br> Currency: {1}<br>Payroll Payable Account: {2}"
 msgstr ""
 
@@ -8870,7 +8870,7 @@ msgstr "Seçilen filtrelere ve aktif maaş yapısına sahip Personel bulunamadı
 
 #: hrms/public/js/templates/feedback_history.html:55
 msgid "No feedback has been received yet"
-msgstr ""
+msgstr "Henüz geri bildirim alınmadı"
 
 #: hrms/hr/doctype/goal/goal_list.js:94
 msgid "No items selected"
@@ -8901,7 +8901,7 @@ msgstr "Kayıt Bulunamadı"
 msgid "No replies from"
 msgstr "Şundan yanıt yok"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1450
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1470
 msgid "No salary slip found to submit for the above selected criteria OR salary slip already submitted"
 msgstr "Yukarıdaki özelliklere göre maaş fişi bulunmayan VEYA maaş fişi zaten gönderildi"
 
@@ -8918,11 +8918,11 @@ msgstr "Günlük Olmayan"
 #. Label of the non_taxable_earnings (Currency) field in DocType 'Salary Slip'
 #: hrms/payroll/doctype/salary_slip/salary_slip.json
 msgid "Non Taxable Earnings"
-msgstr ""
+msgstr "Vergiye Tabi Olmayan Kazançlar"
 
 #: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:250
 msgid "Non-Billed Hours"
-msgstr ""
+msgstr "Faturalandırılmayan Saatler"
 
 #: hrms/hr/report/employee_hours_utilization_based_on_timesheet/employee_hours_utilization_based_on_timesheet.py:74
 msgid "Non-Billed Hours (NB)"
@@ -9520,7 +9520,7 @@ msgstr "Ödeme Girişi"
 msgid "Payment and Accounting"
 msgstr "Ödeme ve Muhasebe"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1051
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1071
 msgid "Payment of {0} from {1} to {2}"
 msgstr "{1} ile {2} arasındaki {0} ödemesi"
 
@@ -9576,7 +9576,7 @@ msgstr "Bordro Çalışan Ayrıntısı"
 msgid "Payroll Entry"
 msgstr "Bordro Girişi"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:120
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:121
 msgid "Payroll Entry cancellation is queued. It may take a few minutes"
 msgstr ""
 
@@ -9928,7 +9928,7 @@ msgstr ""
 msgid "Please set a Default Cash Account in Company defaults"
 msgstr "Lütfen Şirket Varsayılanlarında Varsayılan Nakit Hesabı ayarlayın"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:317
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:318
 msgid "Please set account in Salary Component {0}"
 msgstr ""
 
@@ -10476,7 +10476,7 @@ msgstr "Referans Belge Türü"
 #: hrms/hr/doctype/leave_allocation/leave_allocation.py:355
 #: hrms/hr/doctype/leave_application/leave_application.py:481
 #: hrms/payroll/doctype/additional_salary/additional_salary.py:137
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:90
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:91
 msgid "Reference: {0}"
 msgstr "Referans: {0}"
 
@@ -10876,7 +10876,7 @@ msgstr "İade Edilen Tutar"
 
 #: hrms/hr/doctype/hr_settings/hr_settings.js:41
 msgid "Review various other settings related to Employee Leaves and Expense Claim"
-msgstr ""
+msgstr "Personel İzinleri ve Gider Talebi ile ilgili diğer çeşitli ayarları inceleyin"
 
 #. Label of the reviewer (Link) field in DocType 'Employee Performance
 #. Feedback'
@@ -11185,11 +11185,11 @@ msgstr "Maaş Kaybı Kredisi"
 msgid "Salary Slip Timesheet"
 msgstr "Maaş Kayma Zaman Çizelgesi"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:86
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:87
 msgid "Salary Slip already exists for {0} for the given dates"
 msgstr ""
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:250
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:251
 msgid "Salary Slip creation is queued. It may take a few minutes"
 msgstr ""
 
@@ -11201,11 +11201,11 @@ msgstr "çalışanın maaş Kuponu {0} zaten bu dönem için tahrik edilen"
 msgid "Salary Slip of employee {0} already created for time sheet {1}"
 msgstr "çalışanın maaş Kuponu {0} zaten zaman ayırmak için çalışanlar {1}"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:295
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:296
 msgid "Salary Slip submission is queued. It may take a few minutes"
 msgstr ""
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1389
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1409
 msgid "Salary Slip {0} failed for Payroll Entry {1}"
 msgstr ""
 
@@ -11227,11 +11227,11 @@ msgstr "Maaş Balıkları Oluşturuldu"
 msgid "Salary Slips Submitted"
 msgstr "Maaş Balıkları Gönderildi"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1431
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1451
 msgid "Salary Slips already exist for employees {}, and will not be processed by this payroll."
 msgstr ""
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1456
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1476
 msgid "Salary Slips submitted for period from {0} to {1}"
 msgstr ""
 
@@ -11435,7 +11435,7 @@ msgstr "Önce Mülakatı Seçin"
 msgid "Select Payment Account to make Bank Entry"
 msgstr "Banka Girişi Yapmak İçin Ödeme Hesabını Seçin"
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1594
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1614
 msgid "Select Payroll Frequency."
 msgstr ""
 
@@ -11886,7 +11886,7 @@ msgstr "Vardiya Bitiş Saati"
 #: hrms/hr/doctype/shift_location/shift_location.json
 #: hrms/hr/workspace/shift_&_attendance/shift_&_attendance.json
 msgid "Shift Location"
-msgstr ""
+msgstr "Vardiya Konumu"
 
 #. Label of the shift_request (Link) field in DocType 'Shift Assignment'
 #. Name of a DocType
@@ -12066,7 +12066,7 @@ msgstr "Kaynak Adı"
 msgid "Source and Rating"
 msgstr "Kaynak ve Değerlendirme"
 
-#: hrms/api/roster.py:79
+#: hrms/api/roster.py:84
 msgid "Source and target shifts cannot be the same"
 msgstr "Kaynak ve hedef vardiyaları aynı olamaz"
 
@@ -12164,7 +12164,7 @@ msgstr "Başlangıç ve bitiş tarihleri geçerli bir Bordro Döneminde değil, 
 msgid "Start and end dates not in a valid Payroll Period, cannot calculate {0}."
 msgstr "Başlangıç ve bitiş süreleri geçerli bir Bordro Döneminde değil, {0} değeri hesaplayamaz."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:198
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:199
 msgid "Start date: {0}"
 msgstr "Başlangıç Tarihi: {0}"
 
@@ -12344,7 +12344,7 @@ msgstr "Kaydedildi"
 msgid "Submitting Salary Slips and creating Journal Entry..."
 msgstr "Maaş Fişleri Gönderme ve Yevmiye Kaydı Oluşturma ..."
 
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1511
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1531
 msgid "Submitting Salary Slips..."
 msgstr "Maaş Fişleri Gönderiliyor ..."
 
@@ -12360,7 +12360,7 @@ msgstr "Bağlı şirketler zaten {1} pozisyon için {2} bütçesiyle planlama ya
 #: frontend/src/views/AppSettings.vue:95
 #: hrms/hr/doctype/employee_referral/employee_referral.py:54
 #: hrms/hr/utils.py:852
-#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1459
+#: hrms/payroll/doctype/payroll_entry/payroll_entry.py:1479
 #: hrms/public/js/utils/index.js:139
 msgid "Success"
 msgstr "Başarılı"
@@ -12625,7 +12625,7 @@ msgstr "Teşekkürler"
 
 #: hrms/overrides/company.py:131
 msgid "The currency of {0} should be same as the company's default currency. Please select another account."
-msgstr ""
+msgstr "{0} para birimi şirketin varsayılan para birimiyle aynı olmalıdır. Lütfen başka bir hesap seçin."
 
 #. Description of the 'Payroll Date' (Date) field in DocType 'Additional
 #. Salary'
