@@ -350,7 +350,7 @@ class LeaveApplication(Document, PWANotificationsMixin):
 			frappe.throw(_("You are not authorized to approve leaves on Block Dates"), LeaveDayBlockedError)
 
 	def validate_balance_leaves(self):
-		precision = cint(frappe.db.get_single_value("System Settings", "float_precision", cache=True))
+		precision = cint(frappe.db.get_single_value("System Settings", "float_precision")) or 2
 
 		if self.from_date and self.to_date:
 			self.total_leave_days = get_number_of_leave_days(
@@ -378,7 +378,6 @@ class LeaveApplication(Document, PWANotificationsMixin):
 					consider_all_leaves_in_the_allocation_period=True,
 					for_consumption=True,
 				)
-				self.leave_balance = leave_balance.get("leave_balance")
 				leave_balance_for_consumption = flt(
 					leave_balance.get("leave_balance_for_consumption"), precision
 				)
@@ -851,7 +850,7 @@ def get_number_of_leave_days(
 def get_leave_details(employee, date, for_salary_slip=False):
 	allocation_records = get_leave_allocation_records(employee, date)
 	leave_allocation = {}
-	precision = cint(frappe.db.get_single_value("System Settings", "float_precision", cache=True))
+	precision = cint(frappe.db.get_single_value("System Settings", "float_precision")) or 2
 
 	for d in allocation_records:
 		allocation = allocation_records.get(d, frappe._dict())
@@ -866,7 +865,7 @@ def get_leave_details(employee, date, for_salary_slip=False):
 
 		leaves_taken = get_leaves_for_period(employee, d, allocation.from_date, to_date) * -1
 		leaves_pending = get_leaves_pending_approval_for_period(employee, d, allocation.from_date, to_date)
-		expired_leaves = allocation.total_leaves_allocated - (remaining_leaves + leaves_taken)
+		expired_leaves = allocation.total_leaves_allocated - (flt(remaining_leaves, precision) + leaves_taken)
 
 		leave_allocation[d] = {
 			"total_leaves": flt(allocation.total_leaves_allocated, precision),
