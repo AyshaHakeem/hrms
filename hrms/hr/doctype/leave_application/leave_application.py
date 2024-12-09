@@ -865,7 +865,7 @@ def get_leave_details(employee, date, for_salary_slip=False):
 
 		leaves_taken = get_leaves_for_period(employee, d, allocation.from_date, to_date) * -1
 		leaves_pending = get_leaves_pending_approval_for_period(employee, d, allocation.from_date, to_date)
-		expired_leaves = allocation.total_leaves_allocated - (flt(remaining_leaves, precision) + leaves_taken)
+		expired_leaves = allocation.total_leaves_allocated - (remaining_leaves + leaves_taken)
 
 		leave_allocation[d] = {
 			"total_leaves": flt(allocation.total_leaves_allocated, precision),
