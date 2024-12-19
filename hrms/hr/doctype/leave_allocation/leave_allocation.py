@@ -464,3 +464,81 @@ def get_unused_leaves(employee, leave_type, from_date, to_date):
 def validate_carry_forward(leave_type):
 	if not frappe.db.get_value("Leave Type", leave_type, "is_carry_forward"):
 		frappe.throw(_("Leave Type {0} cannot be carry-forwarded").format(leave_type))
+
+
+@frappe.whitelist()
+def bulk_allocate_leaves(allocations, new_leaves):
+	allocations = frappe.parse_json(allocations)
+	if len(allocations) <= 30:
+		return _bulk_allocate_leaves(allocations, new_leaves)
+
+	frappe.enqueue(_bulk_allocate_leaves, timeout=3000, allocations=allocations, new_leaves=new_leaves)
+	frappe.msgprint(
+		_("Allocation of leaves has been queued. It may take a few minutes."),
+		alert=True,
+		indicator="blue",
+	)
+
+
+def _bulk_allocate_leaves(allocations, new_leaves):
+	success, failure = [], []
+
+	for allocation in allocations:
+		doc = frappe.get_doc("Leave Allocation", allocation)
+		new_allocation = flt(doc.total_leaves_allocated) + flt(new_leaves)
+		new_allocation_without_cf = flt(
+			flt(doc.get_existing_leave_count()) + flt(new_leaves),
+			doc.precision("total_leaves_allocated"),
+		)
+		max_leaves_allowed = frappe.db.get_value("Leave Type", doc.leave_type, "max_leaves_allowed")
+
+		if new_allocation > max_leaves_allowed and max_leaves_allowed > 0:
+			new_allocation = max_leaves_allowed
+
+		annual_allocation = 0
+		if doc.leave_policy:
+			annual_allocation = frappe.db.get_value(
+				"Leave Policy Detail",
+				{"parent": doc.leave_policy, "leave_type": doc.leave_type},
+				"annual_allocation",
+			)
+			annual_allocation = flt(annual_allocation, doc.precision("total_leaves_allocated"))
+
+		if new_allocation != doc.total_leaves_allocated and (
+			not doc.leave_policy or new_allocation_without_cf <= annual_allocation
+		):
+			try:
+				doc.db_set("total_leaves_allocated", new_allocation, update_modified=False)
+				date = frappe.flags.current_date or getdate()
+				create_additional_leave_ledger_entry(doc, new_leaves, date)
+
+			except Exception:
+				frappe.log_error(
+					f"Bulk Allocation - Processing failed for Allocation {doc.name}.",
+					reference_doctype="Leave Allocation",
+					reference_name=doc.name,
+				)
+				failure.append(doc.employee)
+			else:
+				text = _("{0} leaves were manually allocated by {1} on {2}").format(
+					frappe.bold(new_leaves), frappe.session.user, frappe.bold(formatdate(date))
+				)
+				doc.add_comment(comment_type="Info", text=text)
+				success.append(
+					{"doc": get_link_to_form("Leave Allocation", doc.name), "employee": doc.employee}
+				)
+		else:
+			frappe.log_error(
+				title=f"Bulk Allocation - Processing failed for Allocation {doc.name}.",
+				message="Total leaves allocated cannot exceed allocation limit.",
+				reference_doctype="Leave Allocation",
+				reference_name=doc.name,
+			)
+			failure.append(doc.employee)
+
+	frappe.clear_messages()
+	frappe.publish_realtime(
+		"completed_bulk_leave_allocation",
+		message={"success": success, "failure": failure},
+		after_commit=True,
+	)
