@@ -8,6 +8,7 @@ from erpnext.setup.doctype.employee.test_employee import make_employee
 from hrms.hr.doctype.leave_allocation.leave_allocation import (
 	BackDatedAllocationError,
 	OverAllocationError,
+	bulk_allocate_leaves,
 )
 from hrms.hr.doctype.leave_ledger_entry.leave_ledger_entry import process_expired_allocation
 from hrms.hr.doctype.leave_type.test_leave_type import create_leave_type
@@ -613,6 +614,25 @@ class TestLeaveAllocation(IntegrationTestCase):
 		leave_allocation.new_leaves_allocated = leave_application.total_leave_days - 1
 		leave_allocation.total_leaves_allocated = leave_application.total_leave_days - 1
 		self.assertRaises(frappe.ValidationError, leave_allocation.submit)
+
+	def test_bulk_leave_allocation(self):
+		leave_allocation_1 = create_leave_allocation()
+		leave_allocation_1.submit()
+
+		leave_allocation_2 = create_leave_allocation(
+			leave_type="_Test Leave Type Earned",
+		)
+		leave_allocation_2.submit()
+
+		allocations = [leave_allocation_1.name, leave_allocation_2.name]  # leave_allocation_2.name]
+
+		bulk_allocate_leaves(allocations, 1.5)
+
+		leave_allocation_1.reload()
+		leave_allocation_2.reload()
+
+		self.assertEqual(leave_allocation_1.total_leaves_allocated, 16.5)
+		self.assertEqual(leave_allocation_2.total_leaves_allocated, 16.5)
 
 
 def create_leave_allocation(**args):
