@@ -323,50 +323,15 @@ class LeaveAllocation(Document):
 				title=_("Invalid Dates"),
 			)
 
-		new_allocation = flt(self.total_leaves_allocated) + flt(new_leaves)
-		new_allocation_without_cf = flt(
-			flt(self.get_existing_leave_count()) + flt(new_leaves),
-			self.precision("total_leaves_allocated"),
-		)
-
-		max_leaves_allowed = frappe.db.get_value("Leave Type", self.leave_type, "max_leaves_allowed")
-		if new_allocation > max_leaves_allowed and max_leaves_allowed > 0:
-			new_allocation = max_leaves_allowed
-
-		annual_allocation = frappe.db.get_value(
-			"Leave Policy Detail",
-			{"parent": self.leave_policy, "leave_type": self.leave_type},
-			"annual_allocation",
-		)
-		annual_allocation = flt(annual_allocation, self.precision("total_leaves_allocated"))
-
-		if (
-			new_allocation != self.total_leaves_allocated
-			# annual allocation as per policy should not be exceeded
-			and new_allocation_without_cf <= annual_allocation
-		):
-			self.db_set("total_leaves_allocated", new_allocation, update_modified=False)
-
-			date = from_date or frappe.flags.current_date or getdate()
-			create_additional_leave_ledger_entry(self, new_leaves, date)
-
-			text = _("{0} leaves were manually allocated by {1} on {2}").format(
-				frappe.bold(new_leaves), frappe.session.user, frappe.bold(formatdate(date))
-			)
-			self.add_comment(comment_type="Info", text=text)
+		try:
+			process_leave_allocation(self, new_leaves, from_date)
 			frappe.msgprint(
 				_("{0} leaves allocated successfully").format(frappe.bold(new_leaves)),
 				indicator="green",
 				alert=True,
 			)
-
-		else:
-			msg = _("Total leaves allocated cannot exceed annual allocation of {0}.").format(
-				frappe.bold(_(annual_allocation))
-			)
-			msg += "<br><br>"
-			msg += _("Reference: {0}").format(get_link_to_form("Leave Policy", self.leave_policy))
-			frappe.throw(msg, title=_("Annual Allocation Exceeded"))
+		except frappe.ValidationError as e:
+			frappe.throw(str(e), title=_("Allocation Error"))
 
 	@frappe.whitelist()
 	def get_monthly_earned_leave(self):
@@ -498,52 +463,13 @@ def _bulk_allocate_leaves(allocations, new_leaves):
 
 	for allocation in allocations:
 		doc = frappe.get_doc("Leave Allocation", allocation)
-		new_allocation = flt(doc.total_leaves_allocated) + flt(new_leaves)
-		new_allocation_without_cf = flt(
-			flt(doc.get_existing_leave_count()) + flt(new_leaves),
-			doc.precision("total_leaves_allocated"),
-		)
-		max_leaves_allowed = frappe.db.get_value("Leave Type", doc.leave_type, "max_leaves_allowed")
-
-		if new_allocation > max_leaves_allowed and max_leaves_allowed > 0:
-			new_allocation = max_leaves_allowed
-
-		annual_allocation = 0
-		if doc.leave_policy:
-			annual_allocation = frappe.db.get_value(
-				"Leave Policy Detail",
-				{"parent": doc.leave_policy, "leave_type": doc.leave_type},
-				"annual_allocation",
-			)
-			annual_allocation = flt(annual_allocation, doc.precision("total_leaves_allocated"))
-
-		if new_allocation != doc.total_leaves_allocated and (
-			not doc.leave_policy or new_allocation_without_cf <= annual_allocation
-		):
-			try:
-				doc.db_set("total_leaves_allocated", new_allocation, update_modified=False)
-				date = frappe.flags.current_date or getdate()
-				create_additional_leave_ledger_entry(doc, new_leaves, date)
-
-			except Exception:
-				frappe.log_error(
-					f"Bulk Allocation - Processing failed for Allocation {doc.name}.",
-					reference_doctype="Leave Allocation",
-					reference_name=doc.name,
-				)
-				failure.append(doc.employee)
-			else:
-				text = _("{0} leaves were manually allocated by {1} on {2}").format(
-					frappe.bold(new_leaves), frappe.session.user, frappe.bold(formatdate(date))
-				)
-				doc.add_comment(comment_type="Info", text=text)
-				success.append(
-					{"doc": get_link_to_form("Leave Allocation", doc.name), "employee": doc.employee}
-				)
-		else:
+		try:
+			result = process_leave_allocation(doc, new_leaves)
+			success.append(result)
+		except Exception as e:
 			frappe.log_error(
 				title=f"Bulk Allocation - Processing failed for Allocation {doc.name}.",
-				message="Total leaves allocated cannot exceed allocation limit.",
+				message=str(e),
 				reference_doctype="Leave Allocation",
 				reference_name=doc.name,
 			)
@@ -552,6 +478,49 @@ def _bulk_allocate_leaves(allocations, new_leaves):
 	frappe.clear_messages()
 	frappe.publish_realtime(
 		"completed_bulk_leave_allocation",
-		message={"success": success, "failure": failure},
+		message={"success": success, "failure": failure, "for_update": True},
 		after_commit=True,
 	)
+
+
+def process_leave_allocation(doc, new_leaves, date=None):
+	date = date or frappe.flags.current_date or getdate()
+	new_allocation = flt(doc.total_leaves_allocated) + flt(new_leaves)
+	new_allocation_without_cf = flt(
+		flt(doc.get_existing_leave_count()) + flt(new_leaves),
+		doc.precision("total_leaves_allocated"),
+	)
+
+	max_leaves_allowed = frappe.db.get_value("Leave Type", doc.leave_type, "max_leaves_allowed")
+	if new_allocation > max_leaves_allowed and max_leaves_allowed > 0:
+		new_allocation = max_leaves_allowed
+
+	annual_allocation = 0
+	if doc.leave_policy:
+		annual_allocation = frappe.db.get_value(
+			"Leave Policy Detail",
+			{"parent": doc.leave_policy, "leave_type": doc.leave_type},
+			"annual_allocation",
+		)
+		annual_allocation = flt(annual_allocation, doc.precision("total_leaves_allocated"))
+
+	if new_allocation != doc.total_leaves_allocated and (
+		not doc.leave_policy or new_allocation_without_cf <= annual_allocation
+	):
+		doc.db_set("total_leaves_allocated", new_allocation, update_modified=False)
+		create_additional_leave_ledger_entry(doc, new_leaves, date)
+
+		text = _("{0} leaves were manually allocated by {1} on {2}").format(
+			frappe.bold(new_leaves), frappe.session.user, frappe.bold(formatdate(date))
+		)
+		doc.add_comment(comment_type="Info", text=text)
+		return {
+			"status": "success",
+			"employee": doc.employee,
+			"doc": get_link_to_form("Leave Allocation", doc.name),
+		}
+
+	else:
+		raise frappe.ValidationError(
+			_("Total leaves allocated cannot exceed allocation limit or annual allocation.")
+		)
