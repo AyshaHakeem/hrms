@@ -120,6 +120,7 @@ $.extend(hrms, {
 				message.failure,
 				message.success,
 				message.for_processing,
+				message.for_update,
 			);
 
 			// refresh only on complete/partial success
@@ -127,12 +128,23 @@ $.extend(hrms, {
 		});
 	},
 
-	notify_bulk_action_status: (doctype, failure, success, for_processing = false) => {
+	notify_bulk_action_status: (
+		doctype,
+		failure,
+		success,
+		for_processing = false,
+		for_update = false,
+	) => {
 		let action = __("create/submit");
 		let action_past = __("created");
 		if (for_processing) {
 			action = __("process");
 			action_past = __("processed");
+		}
+
+		if (for_update) {
+			action = __("update");
+			action_past = __("updated");
 		}
 
 		let message = "";

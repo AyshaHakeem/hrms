@@ -10,7 +10,7 @@ frappe.listview_settings["Leave Allocation"] = {
 	},
 	onload: function (listview) {
 		listview.page.add_action_item(
-			__("Allocate Leaves"),
+			__("Allocate More Leaves"),
 			() => {
 				const allocations = listview
 					.get_checked_items()
