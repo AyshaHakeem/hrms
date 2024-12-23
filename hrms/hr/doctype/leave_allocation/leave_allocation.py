@@ -479,6 +479,7 @@ def _bulk_allocate_leaves(allocations, new_leaves):
 	frappe.publish_realtime(
 		"completed_bulk_leave_allocation",
 		message={"success": success, "failure": failure, "for_update": True},
+		doctype="Leave Allocation",
 		after_commit=True,
 	)
 
