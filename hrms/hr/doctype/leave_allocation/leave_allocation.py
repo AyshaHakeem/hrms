@@ -324,7 +324,7 @@ class LeaveAllocation(Document):
 			)
 
 		try:
-			process_leave_allocation(self, new_leaves, from_date)
+			self.add_leaves(new_leaves, from_date)
 			frappe.msgprint(
 				_("{0} leaves allocated successfully").format(frappe.bold(new_leaves)),
 				indicator="green",
@@ -356,6 +356,49 @@ class LeaveAllocation(Document):
 		)
 
 		return _get_monthly_earned_leave(doj, annual_allocation, frequency, rounding)
+
+	def add_leaves(self, new_leaves, date=None):
+		date = date or frappe.flags.current_date or getdate()
+		new_allocation = flt(self.total_leaves_allocated) + flt(new_leaves)
+		new_allocation_without_cf = flt(
+			flt(self.get_existing_leave_count()) + flt(new_leaves),
+			self.precision("total_leaves_allocated"),
+		)
+
+		max_leaves_allowed = frappe.db.get_value("Leave Type", self.leave_type, "max_leaves_allowed")
+		if new_allocation > max_leaves_allowed and max_leaves_allowed > 0:
+			new_allocation = max_leaves_allowed
+
+		annual_allocation = 0
+		if self.leave_policy:
+			annual_allocation = frappe.db.get_value(
+				"Leave Policy Detail",
+				{"parent": self.leave_policy, "leave_type": self.leave_type},
+				"annual_allocation",
+			)
+			annual_allocation = flt(annual_allocation, self.precision("total_leaves_allocated"))
+
+		if new_allocation != self.total_leaves_allocated and (
+			not self.leave_policy or new_allocation_without_cf <= annual_allocation
+		):
+			self.db_set("total_leaves_allocated", new_allocation, update_modified=False)
+			create_additional_leave_ledger_entry(self, new_leaves, date)
+
+			text = _("{0} leaves were manually allocated by {1} on {2}").format(
+				frappe.bold(new_leaves), frappe.session.user, frappe.bold(formatdate(date))
+			)
+			self.add_comment(comment_type="Info", text=text)
+
+			return {
+				"status": "success",
+				"employee": self.employee,
+				"doc": get_link_to_form("Leave Allocation", self.name),
+			}
+
+		else:
+			raise frappe.ValidationError(
+				_("Total leaves allocated cannot exceed allocation limit or annual allocation.")
+			)
 
 
 def get_previous_allocation(from_date, leave_type, employee):
@@ -464,7 +507,7 @@ def _bulk_allocate_leaves(allocations, new_leaves):
 	for allocation in allocations:
 		doc = frappe.get_doc("Leave Allocation", allocation)
 		try:
-			result = process_leave_allocation(doc, new_leaves)
+			result = doc.add_leaves(new_leaves)
 			success.append(result)
 		except Exception as e:
 			frappe.log_error(
@@ -482,46 +525,3 @@ def _bulk_allocate_leaves(allocations, new_leaves):
 		doctype="Leave Allocation",
 		after_commit=True,
 	)
-
-
-def process_leave_allocation(doc, new_leaves, date=None):
-	date = date or frappe.flags.current_date or getdate()
-	new_allocation = flt(doc.total_leaves_allocated) + flt(new_leaves)
-	new_allocation_without_cf = flt(
-		flt(doc.get_existing_leave_count()) + flt(new_leaves),
-		doc.precision("total_leaves_allocated"),
-	)
-
-	max_leaves_allowed = frappe.db.get_value("Leave Type", doc.leave_type, "max_leaves_allowed")
-	if new_allocation > max_leaves_allowed and max_leaves_allowed > 0:
-		new_allocation = max_leaves_allowed
-
-	annual_allocation = 0
-	if doc.leave_policy:
-		annual_allocation = frappe.db.get_value(
-			"Leave Policy Detail",
-			{"parent": doc.leave_policy, "leave_type": doc.leave_type},
-			"annual_allocation",
-		)
-		annual_allocation = flt(annual_allocation, doc.precision("total_leaves_allocated"))
-
-	if new_allocation != doc.total_leaves_allocated and (
-		not doc.leave_policy or new_allocation_without_cf <= annual_allocation
-	):
-		doc.db_set("total_leaves_allocated", new_allocation, update_modified=False)
-		create_additional_leave_ledger_entry(doc, new_leaves, date)
-
-		text = _("{0} leaves were manually allocated by {1} on {2}").format(
-			frappe.bold(new_leaves), frappe.session.user, frappe.bold(formatdate(date))
-		)
-		doc.add_comment(comment_type="Info", text=text)
-		return {
-			"status": "success",
-			"employee": doc.employee,
-			"doc": get_link_to_form("Leave Allocation", doc.name),
-		}
-
-	else:
-		raise frappe.ValidationError(
-			_("Total leaves allocated cannot exceed allocation limit or annual allocation.")
-		)
