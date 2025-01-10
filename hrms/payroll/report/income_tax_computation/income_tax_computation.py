@@ -457,7 +457,9 @@ class IncomeTaxComputationReport:
 
 	def get_total_deducted_tax(self):
 		tax_components = frappe.get_all(
-			"Salary Component", filters={"is_income_tax_component": 1}, pluck="name"
+			"Salary Component",
+			filters={"is_income_tax_component": 1, "type": "Deduction", "disabled": 0},
+			pluck="name",
 		)
 		if not tax_components:
 			return []
