@@ -172,14 +172,7 @@ class SalaryStructureAssignment(Document):
 		if not get_tax_component(self.salary_structure):
 			return False
 
-		if self.has_emp_joined_after_payroll_period_start() and not self.has_existing_salary_slips():
-			return True
-		else:
-			if not self.docstatus.is_draft() and (
-				self.taxable_earnings_till_date or self.tax_deducted_till_date
-			):
-				return True
-			return False
+		return True
 
 	def has_existing_salary_slips(self) -> bool:
 		return bool(
