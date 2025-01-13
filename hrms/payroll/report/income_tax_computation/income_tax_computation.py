@@ -456,10 +456,16 @@ class IncomeTaxComputationReport:
 		return salary_slip.whitelisted_globals, eval_locals
 
 	def get_total_deducted_tax(self):
-		tax_components = frappe.get_all(
-			"Salary Component",
-			filters={"is_income_tax_component": 1, "type": "Deduction", "disabled": 0},
-			pluck="name",
+		SalaryComponent = frappe.qb.DocType("Salary Component")
+		tax_components = (
+			frappe.qb.from_(SalaryComponent)
+			.select(SalaryComponent.name)
+			.where(
+				(SalaryComponent.is_income_tax_component == 1)
+				| (SalaryComponent.variable_based_on_taxable_salary == 1)
+			)
+			.where(SalaryComponent.type == "Deduction")
+			.where(SalaryComponent.disabled == 0)
 		)
 		if not tax_components:
 			return []
