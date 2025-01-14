@@ -953,7 +953,6 @@ def get_leave_allocation_records(employee, date, leave_type=None):
 			& (Ledger.docstatus == 1)
 			& (Ledger.transaction_type == "Leave Allocation")
 			& (Ledger.employee == employee)
-			& (LeaveAllocation.expired == 0)
 			& (Ledger.is_lwp == 0)
 			& (
 				# newly allocated leave's end date is same as the leave allocation's to date
