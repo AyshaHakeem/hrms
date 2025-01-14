@@ -466,7 +466,7 @@ class IncomeTaxComputationReport:
 			)
 			.where(SalaryComponent.type == "Deduction")
 			.where(SalaryComponent.disabled == 0)
-		)
+		).run(pluck="name")
 		if not tax_components:
 			return []
 
