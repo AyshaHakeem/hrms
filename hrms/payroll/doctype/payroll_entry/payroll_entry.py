@@ -710,7 +710,9 @@ class PayrollEntry(Document):
 			}
 			"""
 			for employee, employee_details in self.employee_based_payroll_payable_entries.items():
-				payable_amount = employee_details.get("earnings", 0) - employee_details.get("deductions", 0)
+				payable_amount = (employee_details.get("earnings", 0) or 0) - (
+					employee_details.get("deductions", 0) or 0
+				)
 
 				payable_amount = self.get_accounting_entries_and_payable_amount(
 					payroll_payable_account,
